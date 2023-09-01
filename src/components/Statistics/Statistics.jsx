@@ -4,8 +4,7 @@ import { Label, List, ListItem, Percentage, Section, Title } from './Statistics.
 export const Statistics = ({title, stats}) => {
     return (
         <Section>
-            <Title>{title}</Title>
-
+            {title && <Title>{title}</Title>}
             <List>
                 {stats.map(({ id, label, percentage }) => {
                 return (
@@ -22,8 +21,10 @@ export const Statistics = ({title, stats}) => {
 }
 
 Statistics.propTypes = {
-    // title: PropTypes.string.isRequired,
-    // id: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    percentage: PropTypes.number,
+    title: PropTypes.string,
+    stats: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        percentage: PropTypes.number.isRequired,
+    }).isRequired).isRequired
 }
